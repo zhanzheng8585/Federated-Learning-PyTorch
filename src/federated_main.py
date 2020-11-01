@@ -31,7 +31,8 @@ if __name__ == '__main__':
 
     if args.gpu:
         torch.cuda.set_device(args.gpu)
-    device = 'cuda' if args.gpu else 'cpu'
+    # device = 'cuda' if args.gpu else 'cpu'
+    device = torch.device('cuda:{}'.format(args.gpu) if torch.cuda.is_available() and args.gpu != -1 else 'cpu')
 
     # load dataset and user groups
     train_dataset, test_dataset, user_groups = get_dataset(args)
