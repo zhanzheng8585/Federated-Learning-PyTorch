@@ -27,8 +27,8 @@ class MLP(nn.Module):
 class CNNMnist(nn.Module):
     def __init__(self, args):
         super(CNNMnist, self).__init__()
-        self.conv1 = nn.Conv2d(args.num_channels, 32, kernel_size=5)
-        self.conv2 = nn.Conv2d(32, 64, kernel_size=5)
+        self.conv1 = nn.Conv2d(args.num_channels, 32, kernel_size=3)
+        self.conv2 = nn.Conv2d(32, 64, kernel_size=3)
         self.conv2_drop = nn.Dropout2d()
         self.fc1 = nn.Linear(512, 512)
         self.fc2 = nn.Linear(512, args.num_classes)
