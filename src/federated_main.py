@@ -29,7 +29,7 @@ if __name__ == '__main__':
     args = args_parser()
     exp_details(args)
 
-    if args.gpu:
+    if args.gpu != -1:
         torch.cuda.set_device(args.gpu)
     device = 'cuda' if args.gpu != -1 else 'cpu'
     # device = torch.device('cuda:{}'.format(args.gpu) if torch.cuda.is_available() and args.gpu != -1 else 'cpu')
