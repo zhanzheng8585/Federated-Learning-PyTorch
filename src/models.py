@@ -72,6 +72,16 @@ class CNNCifar(nn.Module):
         self.conv1 = nn.Conv2d(3, 64, 3, padding=1)
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         self.conv2 = nn.Conv2d(64, 128, 3, padding=1)
+        self.avgpool = nn.AdaptiveAvgPool2d((7, 7))
+        self.classifier = nn.Sequential(
+            nn.Linear(128 * 7 * 7, 512),
+            nn.ReLU(True),
+            nn.Dropout(),
+            nn.Linear(512, 512),
+            nn.ReLU(True),
+            nn.Dropout(),
+            nn.Linear(512, args.num_classes),
+        )
         self.fc1 = nn.Linear(128 * 8 * 8, 256)
         self.fc2 = nn.Linear(256, 128)
         self.fc3 = nn.Linear(128, args.num_classes)
@@ -79,10 +89,13 @@ class CNNCifar(nn.Module):
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
-        x = x.view(-1, 128 * 8 * 8)
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
+        x = self.avgpool(x)
+        x = torch.flatten(x, 1)
+        # x = x.view(-1, 128 * 8 * 8)
+        x = self.classifier(x)
+        # x = F.relu(self.fc1(x))
+        # x = F.relu(self.fc2(x))
+        # x = self.fc3(x)
         return F.log_softmax(x, dim=1)
 
 class modelC(nn.Module):
