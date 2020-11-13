@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
         # learning rate decay
         lr = args.lr * (args.decay ** epoch)
-        print('\n LR decay to {} with decay rate 0.99 per comm round.'.format(lr))
+        print('LR decay to {} with decay rate 0.99 per comm round. \n'.format(lr))
 
         for idx in idxs_users:
             local_model = LocalUpdate(args=args, dataset=train_dataset,
@@ -118,8 +118,8 @@ if __name__ == '__main__':
         if (epoch+1) % print_every == 0:
             print(f' \nAvg Training Stats after {epoch+1} global rounds:')
             print(f'Training Loss : {np.mean(np.array(train_loss))}')
-            print('Local Test Accuracy: {:.2f}% \n'.format(100*local_test_accuracy[-1]))
-            print('Global Test Accuracy: {:.2f}%'.format(100*test_acc))
+            print('Local Test Accuracy: {:.2f}%'.format(100*local_test_accuracy[-1]))
+            print('Global Test Accuracy: {:.2f}% \n'.format(100*test_acc))
 
     # Test inference after completion of training
     test_acc, test_loss = test_inference(args, global_model, test_dataset)
