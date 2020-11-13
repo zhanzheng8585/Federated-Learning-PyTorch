@@ -83,6 +83,7 @@ if __name__ == '__main__':
 
         # learning rate decay
         lr = args.lr * (args.decay ** epoch)
+        print('\n LR decay to {} with decay rate 0.99 per comm round.'.format(lr))
 
         for idx in idxs_users:
             local_model = LocalUpdate(args=args, dataset=train_dataset,
