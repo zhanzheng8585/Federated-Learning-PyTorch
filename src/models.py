@@ -70,9 +70,9 @@ class CNNFashion_Mnist(nn.Module):
 class CNNCifar(nn.Module):
     def __init__(self, args):
         super(CNNCifar, self).__init__()
-        self.conv1 = nn.Conv2d(3, 64, 3, padding=1)
+        self.conv1 = nn.Conv2d(3, 64, 3, padding=1, bias=False)
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.conv2 = nn.Conv2d(64, 128, 3, padding=1)
+        self.conv2 = nn.Conv2d(64, 128, 3, padding=1, bias=False)
         self.avgpool = nn.AdaptiveAvgPool2d((7, 7))
         self.classifier = nn.Sequential(
             nn.Linear(128 * 7 * 7, 512),
