@@ -74,7 +74,7 @@ if __name__ == '__main__':
     val_loss_pre, counter = 0, 0
 
     for epoch in tqdm(range(args.epochs)):
-    	print('epoch is {}'.format(epoch))
+        print('epoch is {}'.format(epoch))
         local_weights, local_losses = [], []
         print(f'\n | Global Training Round : {epoch+1} |\n')
 
@@ -83,7 +83,7 @@ if __name__ == '__main__':
         idxs_users = np.random.choice(range(args.num_users), m, replace=False)
 
         # learning rate decay
-		lr = args.lr * (args.decay ** (epoch - 1))
+        lr = args.lr * (args.decay ** (epoch - 1))
 
         for idx in idxs_users:
             local_model = LocalUpdate(args=args, dataset=train_dataset,
