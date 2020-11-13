@@ -83,9 +83,9 @@ class CNNCifar(nn.Module):
             nn.Dropout(),
             nn.Linear(512, args.num_classes),
         )
-        self.fc1 = nn.Linear(128 * 8 * 8, 256)
-        self.fc2 = nn.Linear(256, 128)
-        self.fc3 = nn.Linear(128, args.num_classes)
+        # self.fc1 = nn.Linear(128 * 8 * 8, 256)
+        # self.fc2 = nn.Linear(256, 128)
+        # self.fc3 = nn.Linear(128, args.num_classes)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
