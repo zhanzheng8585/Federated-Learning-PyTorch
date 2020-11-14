@@ -60,7 +60,7 @@ class LocalUpdate(object):
         # Set optimizer for the local updates
         if self.args.optimizer == 'sgd':
             optimizer = torch.optim.SGD(model.parameters(), lr=lr,
-                                        momentum=0.5, weight_decay=5e-4)
+                                        momentum=0.5, weight_decay=1e-3)
         elif self.args.optimizer == 'adam':
             optimizer = torch.optim.Adam(model.parameters(), lr=lr,
                                          weight_decay=1e-4)
