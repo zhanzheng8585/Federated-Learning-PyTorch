@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=6
+export CUDA_VISIBLE_DEVICES=5
 
 # python src/baseline_main.py --model=mlp --dataset=mnist --gpu=0 --epochs=10
 python src/federated_main.py --model cnn \
