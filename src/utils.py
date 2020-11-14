@@ -18,7 +18,7 @@ def get_dataset(args):
     if args.dataset == 'cifar':
         data_dir = '../data/cifar/'
         apply_train_transform = transforms.Compose([
-                transforms.Pad(4),
+                # transforms.Pad(4),
                 transforms.RandomCrop(24),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
